@@ -1,27 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
-interface Country {
-  name: string;
-  flag: string;
-  region: string;
-  capital: string;
-  population: number;
-  languages: {
-    name: string;
-  }[];
-  alpha3Code: string;
-}
+import useCountryData from '../hooks/useCountryData';
+import Country from '../interfaces/Country';
 
 function CountryList() {
-  const [countries, setCountries] = useState<Country[]>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await (await fetch('https://restcountries.com/v2/all')).json() as Country[];
-      setCountries(data);
-    }
-    fetchData();
-  }, []);
+  const [countries] = useCountryData();
 
   return (
     <table>
