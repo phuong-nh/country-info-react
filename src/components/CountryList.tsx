@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import useCountryData from '../hooks/useCountryData';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Country from '../interfaces/Country';
+import { fetchData } from '../redux/countries';
+import { AppDispatch, RootState } from '../redux/store';
 
 function CountryList() {
-  const [countries] = useCountryData();
+  const countries = useSelector((state: any) => (state.countries))
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchData("https://restcountries.com/v2/all"))
+  },[])
+  
 
   return (
     <table>
@@ -18,7 +27,7 @@ function CountryList() {
         </tr>
       </thead>
       <tbody>
-        {countries.map(country => (
+        {countries.display.map((country: Country) => (
           <tr key={country.alpha3Code}>
             <td style={{border: "1px solid black"}}><img src={country.flag} alt={`Flag of ${country.name}`} style={{ width: 100}}/></td>
             <td style={{border: "1px solid black"}}>{country.name}</td>
