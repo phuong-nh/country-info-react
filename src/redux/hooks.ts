@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import DetailedCountryV3 from "../interfaces/DetailedCountryV3";
 import { fetchData } from "./countries";
 import { AppDispatch } from "./store";
 
@@ -19,14 +20,15 @@ export const useInitialData = () => {
 };
 
 export const useDetailedData = (alpha3Code: string) => {
-  const [detail, setDetail] = useState();
+  const [detail, setDetail] = useState<DetailedCountryV3[]>();
 
   useEffect(() => {
     async function fetchData() {
       const data = await (
-        await fetch("https://restcountries.com/v2/all")
+        await fetch("https://restcountries.com/v3.1/alpha/" + alpha3Code)
       ).json();
       setDetail(data);
+      console.log(data)
     }
     fetchData();
   }, []);

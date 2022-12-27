@@ -8,16 +8,17 @@ import {
   TablePagination,
   TableRow,
   IconButton,
-  BottomNavigation,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Country from "../interfaces/Country";
 import { useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 export default function CountryTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const location = useLocation();
 
   const countries = useSelector((state: any) => state.countries);
 
@@ -76,9 +77,15 @@ export default function CountryTable() {
                     </ul>
                   </TableCell>
                   <TableCell>
-                    <IconButton aria-label="More Info">
-                      <KeyboardArrowRightIcon />
-                    </IconButton>
+                    <Link
+                      to={"/" + country.alpha3Code}
+                      state={{ background: location }}
+                    >
+                      <IconButton aria-label="More Info">
+                        <KeyboardArrowRightIcon />
+                      </IconButton>
+                    </Link>
+                    <Outlet />
                   </TableCell>
                 </TableRow>
               ))}

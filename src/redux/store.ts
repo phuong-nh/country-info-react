@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import Country from "../interfaces/Country";
 import countriesReducer from "./countries";
 
 export const store = configureStore({

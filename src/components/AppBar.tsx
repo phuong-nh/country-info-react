@@ -8,13 +8,23 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Alert, Snackbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import SearchBox from "./SearchBox";
+import SortByAlphaIcon from "@mui/icons-material/SortByAlpha";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { filterByName, sortByName } from "../redux/countries";
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 export default function SearchAppBar() {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleClick = () => {
+  const handleSortClick = () => {
+    dispatch(sortByName());
+    dispatch(filterByName());
+  };
+
+  const handleMenuClick = () => {
     setOpen(true);
   };
 
@@ -40,7 +50,7 @@ export default function SearchAppBar() {
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 2 }}
-              onClick={handleClick}
+              onClick={handleMenuClick}
             >
               <MenuIcon />
             </IconButton>
@@ -53,6 +63,16 @@ export default function SearchAppBar() {
               Country
             </Typography>
             <SearchBox />
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ ml: 2 }}
+              onClick={handleSortClick}
+            >
+              <SortByAlphaIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
         <Offset />
