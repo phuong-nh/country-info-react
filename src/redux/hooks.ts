@@ -16,7 +16,7 @@ export const useInitialData = () => {
           "/all?fields=name,flag,region,population,languages,alpha3Code"
       )
     );
-  }, []);
+  }, [dispatch]);
 };
 
 export const useDetailedData = (alpha3Code: string) => {
@@ -31,7 +31,7 @@ export const useDetailedData = (alpha3Code: string) => {
       console.log(data)
     }
     fetchData();
-  }, []);
+  }, [alpha3Code]);
 
   return detail;
 };
