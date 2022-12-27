@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Country from "../interfaces/Country";
+import { normalizeText } from 'normalize-text';
 
 export const fetchData = createAsyncThunk(
   "countries/fetchCountries",
@@ -34,8 +35,9 @@ export const countriesSlice = createSlice({
     },
     filterByName: (state, action: { type: string; payload: string }) => {
       state.display = state.original.filter((country: Country) =>
-        country.name.includes(action.payload)
+        normalizeText(country.name).includes(normalizeText(action.payload))
       );
+      console.log(normalizeText(action.payload))
     },
   },
 

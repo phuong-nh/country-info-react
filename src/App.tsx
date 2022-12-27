@@ -1,10 +1,12 @@
-import React from 'react';
-import CountryList from './components/CountryList';
+import React from "react";
+import SearchAppBar from "./components/AppBar";
+import CountryList from "./components/CountryList";
 
 function App() {
   return (
     <>
-        <CountryList />
+      <SearchAppBar />
+      <CountryList />
     </>
   );
 }
