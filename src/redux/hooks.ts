@@ -12,7 +12,7 @@ export const useInitialData = () => {
     dispatch(
       fetchData(
         apiLink +
-          "/all?fields=name,flag,region,capital,population,languages,alpha3Code"
+          "/all?fields=name,flag,region,population,languages,alpha3Code"
       )
     );
   }, []);

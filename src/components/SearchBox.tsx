@@ -1,7 +1,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { filterByName } from "../redux/countries";
 import { AppDispatch } from "../redux/store";
 
@@ -38,7 +38,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "40ch",
+      width: "30ch",
     },
   },
 }));
@@ -56,7 +56,7 @@ export default function SearchBox() {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search country name..."
+        placeholder="Search by country name..."
         inputProps={{ "aria-label": "search country name" }}
         onChange={handleTextInput}
       />

@@ -50,7 +50,7 @@ export default function SearchAppBar() {
               component="div"
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             >
-              Country Info React app
+              Country
             </Typography>
             <SearchBox />
           </Toolbar>
