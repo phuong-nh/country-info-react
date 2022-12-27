@@ -1,19 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Country from '../interfaces/Country';
-import { fetchData } from '../redux/countries';
-import { AppDispatch, RootState } from '../redux/store';
+import { useInitialData } from '../redux/hooks';
 
 function CountryList() {
   const countries = useSelector((state: any) => (state.countries))
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(fetchData("https://restcountries.com/v2/all"))
-  },[])
+  useInitialData();
   
-
   return (
     <table>
       <thead>
